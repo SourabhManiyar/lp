@@ -1,0 +1,83 @@
+area.apex
+
+
+public class area {
+      public Double val1 {get;set;}
+    public Double val2 {get;set;}
+    public Double result {get;set;}
+    public String func {get;set;}
+   
+    public area()
+    {
+    }
+   
+    public void find()
+    {
+        if(func == 'circle')
+        {
+            result = 3.14*val1*val2;
+        }
+        else if(func == 'triangle')
+        {
+             result = 0.5*val1*val2;
+        }
+        else if(func == 'rectangle')
+        {
+             result = val1*val2;
+        }
+        else
+        {
+             Integer temp =  math.mod(Integer.valueOf(val1) , Integer.valueOf(val2));
+             result = Double.valueOf(temp);
+        }
+    }
+
+}
+
+
+
+area.vfp
+
+
+<apex:page controller="area">
+
+<apex:form >
+   
+    <apex:pageBlock >
+        <apex:pageBlockSection >
+            <apex:pageBlockSectionItem >
+                <apex:outputLabel value="Value 1"/>
+            </apex:pageBlockSectionItem>
+            <apex:pageBlockSectionItem >
+                <apex:inputText value="{!val1}"/>
+            </apex:pageBlockSectionItem>                          
+            <apex:pageBlockSectionItem >
+                <apex:outputLabel value="Value 2"/>
+            </apex:pageBlockSectionItem>
+            <apex:pageBlockSectionItem >
+                <apex:inputText value="{!val2}"/>
+            </apex:pageBlockSectionItem>                         
+            <apex:pageBlockSectionItem >
+                <apex:selectRadio value="{!func}" layout="pageDirection">
+                    <apex:selectOption itemValue="circle" itemLabel="circle"/>
+                    <apex:selectOption itemValue="triangle" itemLabel="triangle"/>
+                    <apex:selectOption itemValue="rectangle" itemLabel="rectangle"/>
+                </apex:selectRadio>
+            </apex:pageBlockSectionItem>
+            <apex:pageBlockSectionItem >               
+            </apex:pageBlockSectionItem>       
+            <apex:pageBlockSectionItem >
+                <apex:outputLabel value="Result"/>
+            </apex:pageBlockSectionItem>
+            <apex:pageBlockSectionItem >
+                <apex:inputText value="{!result}" id="res"/><apex:actionStatus id="sts" startText="Finding..."/>
+            </apex:pageBlockSectionItem>                                      
+        </apex:pageBlockSection>   
+        <apex:pageBlockButtons >
+            <apex:commandButton value="Find" action="{!find}" reRender="res"  status="sts"/>
+        </apex:pageBlockButtons>
+    </apex:pageBlock>
+   
+</apex:form>
+
+</apex:page>
