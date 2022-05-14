@@ -1,0 +1,32 @@
+//https://phoenixnap.com/kb/ubuntu-install-kvm
+//https://old-releases.ubuntu.com/releases/12.04/
+
+su
+//check if your CPU supports hardware virtualization
+egrep -c '(vmx|svm)' /proc/cpuinfo
+//To install cpu-checker
+sudo apt install cpu-checker
+//install essential KVM packages
+sudo apt install qemu-kvm libvirt-daemon-system libvirt-clients bridge-utils
+//use the systemctl command to check the status of libvirtd
+sudo systemctl status libvirtd
+// Press Q to quit the status screen.
+//install virt-manager, a tool for creating and managing VMs
+sudo apt install virt-manager
+//Start virt-manager with:
+sudo virt-manager
+//In the first window, click the computer icon in the upper-left corner.
+// In the dialogue box that opens, select the option to install the VM using an ISO image. Then click Forward.
+// In the next dialogue, click Browse Local and navigate to the path where you stored the ISO you wish to install.
+// Enter the amount of RAM and the number of CPUs you wish to allocate to the VM and proceed to the next step.
+//Allocate hard disk space to the VM. Click Forward to go to the last step
+
+
+
+su
+egrep -c '(vmx|svm)' /proc/cpuinfo
+sudo apt install cpu-checker
+sudo apt install qemu-kvm libvirt-daemon-system libvirt-clients bridge-utils
+sudo systemctl status libvirtd
+sudo apt install virt-manager
+sudo virt-manager
